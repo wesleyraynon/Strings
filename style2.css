@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --cor-fundo: #f0f4f8; /* Fundo claro e suave */
+  --cor-primaria: #4a90e2; /* Azul vibrante, mas não muito escuro */
+  --cor-secundaria: #a3c9f2; /* Azul mais claro para detalhes */
+  --cor-texto-principal: #333333; /* Cinza escuro para legibilidade */
+  --cor-texto-secundaria: #666666; /* Cinza médio para descrições */
+  --cor-branca: #ffffff;
+  --sombra-leve: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra sutil para profundidade */
+  --transicao-suave: all 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Adicionado para melhor controle do layout */
+  font-family: 'Poppins', sans-serif; /* Fonte moderna e legível */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+  padding: 2rem;
+  overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 900px; /* Limita a largura para melhor leitura em telas grandes */
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  background-color: var(--cor-branca);
+  border-radius: 1.5rem;
+  box-shadow: var(--sombra-leve);
+  position: relative;
+  z-index: 1;
+}
+
+/* Efeito de luz sutil no background */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--cor-secundaria) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(80px); /* Suaviza o efeito */
+  opacity: 0.5;
+  z-index: 0;
+}
+
+body::before {
+  top: 20%;
+  left: 30%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #b1d3ff 0%, transparent 70%);
+  animation: moveLight1 10s ease-in-out infinite alternate;
+}
+
+body::after {
+  top: 80%;
+  left: 70%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #d1e5ff 0%, transparent 70%);
+  animation: moveLight2 12s ease-in-out infinite alternate;
+}
+
+@keyframes moveLight1 {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-45%, -55%) scale(1.1); }
+}
+
+@keyframes moveLight2 {
+  from { transform: translate(-50%, -50%) scale(1.1); }
+  to { transform: translate(-55%, -45%) scale(1); }
+}
+
+h1 {
+  color: var(--cor-primaria);
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem); /* Tamanho responsivo */
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#entrada-de-texto {
+  width: 100%;
+  height: 12rem;
+  padding: 1.5rem;
+  border: 2px solid var(--cor-secundaria);
+  border-radius: 1rem;
+  background-color: var(--cor-fundo);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--cor-texto-principal);
+  resize: none; /* Impede que o usuário redimensione o textarea */
+  transition: var(--transicao-suave);
+}
+
+#entrada-de-texto:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.3); /* Efeito de brilho ao focar */
+}
+
+#entrada-de-texto::placeholder {
+  color: var(--cor-texto-secundaria);
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+#botao-palavrachave {
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicao-suave);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#botao-palavrachave:hover {
+  background-color: #3b7ad1; /* Tom mais escuro no hover */
+  box-shadow: var(--sombra-leve);
+}
+
+#botao-palavrachave:active {
+  transform: scale(0.98); /* Efeito de "clique" */
+}
+
+#resultado-palavrachave {
+  width: 100%;
+  min-height: 100px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word; /* Evita quebra de layout com palavras longas */
+  max-height: 50vh;
+  overflow: auto;
+  line-height: 1.6;
+  border: 2px dashed var(--cor-secundaria);
+}
